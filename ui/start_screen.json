@@ -1,0 +1,380 @@
+{
+ "namespace": "start",
+ "start_screen": {
+  "$screen_content": "start.start_screen_content",
+  "$screen_bg_content": "start.ScreenBackground"
+ },
+ "start_screen_content": {
+  "type": "panel",
+  "controls": [
+   { "TitleText@TitleText": {} },
+   { "BottomContentPanel@BottomContentPanel": {} },
+   { "WelcomePanel@WelcomePanel": {} }
+  ]
+ },
+ 
+ "ScreenBackground@VoidMatrixBaseCommon.BaseImg": {
+  "texture": "( $BasePath + '/background' )",
+  "fill": true,
+  "layer": -1
+ },
+ 
+ "TitleText@VoidMatrixBaseCommon.BaseLabel": {
+  "text": "VoidMatrix",
+  "font_scale_factor": 5.5,
+  "anchor_from": "left_middle",
+  "anchor_to": "left_middle",
+  "offset": [ 70, -65 ],
+  "animation_reset_name": "StartAnimToggle",
+  "anims": [ "@start.TitleTextAnim" ],
+  "bindings": [
+   {
+    "binding_type": "view",
+    "source_control_name": "ControlWelcomePanel",
+    "source_property_name": "#toggle_state",
+    "target_property_name": "#visible"
+   }
+  ]
+ },
+ "TitleTextAnim@VoidMatrixBaseCommon.BaseAnim": {
+  "anim_type": "offset",
+  "easing": "out_cubic",
+  "duration": 0.55,
+  "from": [ 70, -25 ],
+  "to": [ 70, -65 ],
+  "$AnimID": "StartAnimToggle"
+ },
+ 
+ "VoidMatrixVersionText@VoidMatrixBaseCommon.BaseLabel": {
+  "text": "( $VoidMatrixVersionText + ' - ' + $VoidMatrixMainVersionText )",
+  "font_scale_factor": 0.8
+ },
+ "MinecraftVersionText@VoidMatrixBaseCommon.BaseLabel": {
+  "text": "#version",
+  "font_scale_factor": 0.8,
+  "bindings": [
+   {
+    "binding_name": "#version"
+   }
+  ]
+ },
+ "VoidMatrixDetailedVersionText@VoidMatrixBaseCommon.BaseLabel": {
+  "text": "( 'VoidMatrix ' + $VoidMatrixDetailedVersionText )",
+  "font_scale_factor": 0.8
+ },
+ 
+ "BottomContentPanelAnim@VoidMatrixBaseCommon.BaseAnim": {
+  "anim_type": "offset",
+  "easing": "out_cubic",
+  "duration": 0.55,
+  "from": [ 70, "100%" ],
+  "to": [ 70, 30 ],
+  "$AnimID": "StartAnimToggle"
+ },
+ "BottomContentPanel": {
+  "type": "panel",
+  "anchor_from": "left_middle",
+  "anchor_to": "left_middle",
+  "animation_reset_name": "StartAnimToggle",
+  "anims": [ "@start.BottomContentPanelAnim" ],
+  "offset": [ 70, 30 ],
+  "size": [ "222px", "98px" ],
+  "bindings": [
+   {
+    "binding_type": "view",
+    "source_control_name": "ControlWelcomePanel",
+    "source_property_name": "#toggle_state",
+    "target_property_name": "#visible"
+   }
+  ],
+  "controls": [
+   { "BtnsStackPanel@BtnsStackPanel": {} },
+   {
+    "TopAreaPanel": {
+     "type": "panel",
+     "anchor_from": "top_right",
+     "anchor_to": "top_right",
+     "size": [ "56px", "40px" ],
+     "controls": [
+      {
+       "LeftWhiteRect@VoidMatrixBaseCommon.WhiteBG": {
+        "size": [ "1px", "63%" ],
+        "anchor_from": "left_middle",
+        "anchor_to": "left_middle"
+       }
+      },
+      {
+       "RightInfoTextContentPanel": {
+        "type": "panel",
+        "anchor_from": "right_middle",
+        "anchor_to": "right_middle",
+        "size": [ "46px", "100%" ],
+        "controls": [
+         {
+          "TextStackPanel": {
+           "type": "stack_panel",
+           "anchor_from": "left_middle",
+           "anchor_to": "left_middle",
+           "size": [ "100%", "100%c" ],
+           "controls": [
+            { "VoidMatrixVersionText@VoidMatrixVersionText": {} },
+            { "MinecraftVersionText@MinecraftVersionText": {} },
+            { "VoidMatrixDetailedVersionText@VoidMatrixDetailedVersionText": {} }
+           ]
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  ]
+ },
+ 
+ "BtnsStackPanel": {
+  "type": "stack_panel",
+  "size": [ "100%", "100%" ],
+  "controls": [
+   {
+    "TopBtnsStackPanel": {
+     "type": "stack_panel",
+     "orientation": "horizontal",
+     "size": [ "100%", "40px" ],
+     "controls": [
+      { "ProfileBtn@ProfileBtn": {} },
+      { "Padding@common.empty_panel": {"size":[18,18]} },
+      { "StoreBtn@StoreBtn": {} },
+      { "Padding2@common.empty_panel": {"size":[18,18]} },
+      { "QuitBtn@QuitBtn": {} }
+     ]
+    }
+   },
+   { "Padding@common.empty_panel": {"size":[18,18]} },
+   {
+    "BottomBtnsStackPanel": {
+     "type": "stack_panel",
+     "orientation": "horizontal",
+     "size": [ "100%", "40px" ],
+     "controls": [
+      { "PlayBtn@PlayBtn": {} },
+      { "Padding@common.empty_panel": {"size":[18,18]} },
+      { "SettingsBtn@SettingsBtn": {} }
+     ]
+    }
+   }
+  ]
+ },
+ 
+ "PlayBtn@StartLongBtn": {
+  "$pressed_button_name": "button.menu_play",
+  "$button_text": "Play"
+ },
+ "SettingsBtn@StartLongBtn": {
+  "size": [ 108, 40 ],
+  "$pressed_button_name": "button.menu_settings",
+  "$button_text": "Settings"
+ },
+ "ProfileBtn@StartSquareBtn": {
+  "$pressed_button_name": "button.to_profile_screen",
+  "$button_text": "Profile"
+ },
+ "StoreBtn@StartSquareBtn": {
+  "$pressed_button_name": "button.menu_store",
+  "$button_text": "Store"
+ },
+ "QuitBtn@StartSquareBtn": {
+  "$pressed_button_name": "button.menu_exit",
+  "$button_text": "Quit"
+ },
+ 
+ "StartLongBtn@VoidMatrixBaseCommon.BaseAnimBtn": {
+  "size": [ 96, 40 ],
+  "$default": "start.StartBtnDefault",
+  "$hover": "start.StartBtnHover",
+  "$pressed": "start.StartBtnPressed"
+ },
+ "StartSquareBtn@StartLongBtn": {
+  "size": [ 40, 40 ],
+  "$BtnTextScale": 1.13,
+  "$BtnTextOffset": [ 0, 0 ],
+  "$BtnTextAnchor": "center"
+ },
+ "StartBtnDefault@VoidMatrixBaseCommon.BaseFullPanel": {
+  "controls": [
+  
+   {
+    "BtnBackgroundShadow@VoidMatrixBaseCommon.BaseImg": {
+     "texture": "( $BasePath + '/Rshadow' )",
+     "size": [ "100% + 6px", "100% + 6px" ]
+    }
+   },
+   
+   {
+    "BtnBackground@VoidMatrixBaseCommon.RWhiteBG": {
+     "color": "$BtnBGColor",
+     "$BtnBGColor|default": [ 0.14, 0.14, 0.14 ],
+     "alpha": 0.9,
+     "size": [ "100%", "100%" ],
+     "animation_reset_name": "$AnimID",
+     "$AnimID|default": "DefaultAnimID",
+     "anims": [ "@$anim" ],
+     "$anim|default": "start.EmptyAnim"
+    }
+   },
+   {
+    "BtnText@VoidMatrixBaseCommon.BaseLabel": {
+     "text": "$button_text",
+     "font_scale_factor": "$BtnTextScale",
+     "$BtnTextScale|default": 1.65,
+     "anchor_from": "$BtnTextAnchor",
+     "anchor_to": "$BtnTextAnchor",
+     "$BtnTextAnchor|default": "left_middle",
+     "offset": "$BtnTextOffset",
+     "$BtnTextOffset|default": [ 10, 0 ],
+     "layer": 2
+    }
+   }
+  ]
+ },
+ "StartBtnHover@StartBtnDefault": {
+  "$BtnBGColor": [ 0.23, 0.23, 0.23 ]
+ },
+ "StartBtnPressed@StartBtnDefault": {
+  "$BtnBGColor": [ 0.23, 0.23, 0.23 ],
+  "$anim": "start.StartBtnPressedAnim",
+  "$AnimID": "$pressed_button_name"
+ },
+ "StartBtnPressedAnim@BaseAnim": {
+  "anim_type": "alpha",
+  "easing": "out_cubic",
+  "duration": 0.1,
+  "from": 1,
+  "to": 0,
+  "$AnimID": "$pressed_button_name"
+ },
+ "EmptyAnim@BaseAnim": {
+  "anim_type": "alpha",
+  "easing": "linear",
+  "duration": 0,
+  "from": 1,
+  "to": 1,
+  "$AnimID": "$pressed_button_name"
+ },
+ 
+ 
+ 
+ "WelcomePanel": {
+  "type": "input_panel",
+  "prevent_touch_input": true,
+  "size": [ "100%", "100%" ],
+  "bindings": [
+   {
+    "binding_type": "view",
+    "source_control_name": "ControlWelcomePanel",
+    "source_property_name": "( not #toggle_state )",
+    "target_property_name": "#visible"
+   }
+  ],
+  "controls": [
+   {
+    "Background@ScreenBackground": {
+     "layer": 100
+    }
+   },
+   { "WelcomeContent@WelcomeContentPanel": {} }
+  ]
+ },
+ "WelcomeContentPanel@VoidMatrixBaseCommon.BaseFullPanel": {
+  "controls": [
+   {
+    "TitleText@VoidMatrixBaseCommon.BaseLabel": {
+     "text": "VoidMatrix",
+     "font_scale_factor": 5.5,
+     "anchor_from": "left_middle",
+     "anchor_to": "left_middle",
+     "layer": 102,
+     "offset": [ 70, -25 ]
+    }
+   },
+   { "StartToggle@StartToggle": {} },
+   { "WelcomePlayerNameText@WelcomePlayerNameText": {} }
+  ]
+ },
+ "WelcomePlayerNameText@VoidMatrixBaseCommon.BaseLabel": {
+  "anchor_from": "left_middle",
+  "anchor_to": "left_middle",
+  "layer": 102,
+  "offset": [ 70, -65 ],
+  "text": "#playername",
+  "bindings": [
+   {
+    "binding_name": "( 'Welcome, ' + #playername + '.' )"
+   },
+   {
+    "binding_name": "#sign_in_visible",
+    "binding_name_override": "#visible"
+   }
+  ]
+ },
+ "StartToggle@VoidMatrixBaseCommon.BaseAnimToggle": {
+  "anchor_from": "left_middle",
+  "anchor_to": "left_middle",
+  "layer": 101,
+  "offset": [ 70, 44 ],
+  "size": [ 165, 38 ],
+  "$toggle_view_binding_name": "ControlWelcomePanel",
+  "$pressed_button_name": "button.menu_exit",
+  "$unchecked": "start.StartToggleUnchecked",
+  "$checked": "start.StartToggleChecked",
+  "$unchecked_hover": "start.StartToggleUnchecked",
+  "$checked_hover": "start.StartToggleChecked",
+  "$AnimID": "StartAnimToggle",
+  "$toggle_name": "VoidMatrixStartToggle",
+  "$toggle_text": "Start",
+  "$toggle_icon": "( $BasePath + '/start' )"
+ },
+ "StartToggleUnchecked@VoidMatrixBaseCommon.BaseFullPanel": {
+  "controls": [
+   
+   {
+    "ToggleBackgroundShadow@VoidMatrixBaseCommon.BaseImg": {
+     "texture": "( $BasePath + '/Rshadow' )",
+     "size": [ "100% + 6px", "100% + 6px" ]
+    }
+   },
+   
+   {
+    "ToggleBackground@VoidMatrixBaseCommon.RWhiteBG": {
+     "color": "$BtnBGColor",
+     "$BtnBGColor|default": [ 0.14, 0.14, 0.14 ],
+     "alpha": 0.9,
+     "size": [ "100%", "100%" ]
+    }
+   },
+   {
+    "ToggleText@VoidMatrixBaseCommon.BaseLabel": {
+     "text": "$toggle_text",
+     "anchor_from": "left_middle",
+     "anchor_to": "left_middle",
+     "font_scale_factor": 1.65,
+     "offset": [ 18, 0 ],
+     "layer": 2
+    }
+   },
+   {
+    "ToggleImage@VoidMatrixBaseCommon.BaseImg": {
+     "texture": "$toggle_icon",
+     "anchor_from": "right_middle",
+     "anchor_to": "right_middle",
+     "offset": [ -18, 0 ],
+     "size": [ 8, 10 ],
+     "layer": 2
+    }
+   }
+  ]
+ },
+ "StartToggleChecked@StartToggleUnchecked": {
+  "$BtnBGColor": [ 0.23, 0.23, 0.23 ]
+ }
+}
