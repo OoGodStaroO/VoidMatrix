@@ -1,0 +1,69 @@
+{
+ "namespace": "VoidMatrixBaseCommon",
+ 
+ "BaseImg": {
+  "type": "image",
+  "bilinear": true
+ },
+ "BlackBG@BaseImg": {
+  "texture": "( $BasePath + '/white' )",
+  "color": [ 0.0, 0.0, 0.0 ]
+ },
+ "RBlackBG@BlackBG": {
+  "texture": "( $BasePath + '/Rwhite' )"
+ },
+ "WhiteBG@BaseImg": {
+  "texture": "( $BasePath + '/white' )"
+ },
+ "RWhiteBG@WhiteBG": {
+  "texture": "( $BasePath + '/Rwhite' )"
+ },
+ "BaseLabel": {
+  "type": "label",
+  "font_type": "smooth"
+ },
+ "BaseToggle@common_toggles.light_ui_toggle": {
+  "$button_type_panel": "common.empty_panel",
+  "$unchecked_control": "$unchecked",
+  "$checked_control": "$checked",
+  "$unchecked_hover_control": "$unchecked_hover",
+  "$checked_hover_control": "$checked_hover"
+ },
+ "BaseAnimToggle@BaseToggle": {
+  "$button_mappings": [
+   {
+    "from_button_id": "button.menu_select",
+    "$AnimID|default": "DefaultAnimID",
+    "to_button_id": "$AnimID",
+    "mapping_type": "pressed"
+   }
+  ]
+ },
+ "BaseAnimBtn@common.button": {
+  "controls": [
+   { "default@$default": {} },
+   { "hover@$hover": {} },
+   { "pressed@$pressed": {} }
+  ],
+  "$button_mappings": [
+   {
+    "from_button_id": "button.menu_select",
+    "$AnimID|default": "DefaultAnimID",
+    "to_button_id": "$AnimID",
+    "mapping_type": "pressed"
+   }
+  ]
+ },
+ "BaseAnim": {
+  "reset_event": "$AnimID",
+  "$AnimID|default": "DefaultAnimID"
+ },
+ "BaseFullPanel": {
+  "type": "panel",
+  "size": [ "100%", "100%" ]
+ },
+ "PaddingPanel": {
+  "type": "panel",
+  "size": "$size"
+ }
+}
